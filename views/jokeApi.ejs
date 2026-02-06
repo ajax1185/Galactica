@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitcount+Single:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="style/style.css" rel="stylesheet" />
+    <title>Batalla Naval!</title>
+
+    <style>
+      body {
+        min-height: 100vh;
+        background: #212534;
+        display: flex;
+        /* align-items: center; */
+        flex-direction: column;
+        /* padding-top: 2rem; */
+        padding-bottom: 2rem;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="flex-box-head"><%- include("header.ejs") %></div>
+      BODY API
+        <div class="card">
+            <% if (locals.randomJoke) { %>
+               <p> <%= randomJoke  %></p>
+               <p> <%= delivery  %> </p>
+            <% } %>
+        </div>
+        <div>
+            <%if (locals.error) {  %>
+                <%= error %>
+            <% } %>
+        </div>
+      <div class="flex-box-footer"><%- include("footer.ejs") %></div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-4.0.0.js"
+      integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
+      crossorigin="anonymous"
+    ></script>
+    <script src="javascript/jqueryBatallaNaval.js"></script>
+  </body>
+</html>

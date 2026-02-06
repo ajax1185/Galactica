@@ -1,0 +1,254 @@
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.flex-box-header {
+  flex-grow: 1;
+}
+
+.flex-box-body {
+  flex-basis: 450px;
+  max-height: 450px;
+  padding: 10px;
+  background-color: rgb(153, 6, 6);
+}
+
+.flex-box-footer {
+  flex-grow: 1;
+  padding: 10px;
+  /* border: 1px solid black; */
+}
+
+.batalla-tabla-box {
+  display: flex;
+  margin-top: 3%;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.batalla-for-box-x {
+  width: auto;
+  height: auto;
+  border: white 8px outset;
+}
+
+.container-y {
+  display: flex;
+
+  background-color: rgba(202, 194, 194, 0.973);
+  visibility: hidden;
+  z-index: 1;
+}
+
+#contador {
+  visibility: hidden;
+}
+
+#mensaje {
+  visibility: hidden;
+}
+
+.batalla-for-box-y {
+  width: 50px;
+  height: 40px;
+  border: 1px solid rgb(43, 42, 42);
+}
+
+#contenedor-boton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+  max-height: 350px;
+  /* border: 1px solid black; */
+}
+
+#clickEmpezarBatalla {
+  width: 50%;
+  height: 50%;
+  border-radius: 200px 200px;
+  font-size: 50px;
+  /* z-index: -1; */
+  /* position: fixed; */
+  animation: movimiento 2s linear infinite;
+}
+
+@keyframes movimiento {
+  from {
+    transform: translate3d(0, 0, 0);
+    background-color: gray;
+  }
+  /* Halfway through the animation */
+  50% {
+    /* Move 100px right, 50px down, and 100px closer to the viewer */
+    background-color: white;
+    transform: translate3d(0px, 50px, 0px);
+  }
+  /* End the animation (same as 'to') */
+  to {
+    background-color: gray;
+    /* Move back to the starting position along the x and y axes, 
+       and further away along the z-axis to make it appear smaller/farther */
+    transform: translate3d(0, 0, -100px);
+  }
+}
+
+@keyframes cambiarColor {
+  0% {
+    background-color: #113f67;
+  }
+  33% {
+    background-color: #34699a;
+  }
+  66% {
+    background-color: #58a0c8;
+  }
+  100% {
+    background-color: #fdf5aa;
+  }
+}
+
+#contador {
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  border: 5px outset white;
+  color: white;
+  padding: 20px;
+  font-size: 200px;
+  margin: 20px;
+}
+
+#jugador {
+  position: absolute;
+  right: 50px;
+  top: 200px;
+  border: 5px outset white;
+  font-size: 40px;
+  padding: 20px;
+}
+
+#mensaje {
+  position: absolute;
+  width: auto;
+  top: 50px;
+  right: 40px;
+  border: 10px outset white;
+  padding: 20px;
+  font-size: 20px;
+  margin: 20px;
+  color: white;
+}
+
+#cumplido {
+  position: absolute;
+  /* width: 150px; */
+  z-index: 2;
+  border: 1px solid black;
+  padding: 20px;
+  font-size: 50px;
+  margin: 20px;
+  color: white;
+  visibility: hidden;
+}
+
+* {
+  font-family: "Bitcount Single", system-ui;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
+
+:root {
+  --card-height: 65vh;
+  --card-width: calc(var(--card-height) / 1.5);
+}
+
+.card {
+  background: url("../image/whisper-img.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-self: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  color: rgb(88 199 250 / 0%);
+  font-family: "Gloria Hallelujah", cursive;
+}
+
+.card:hover {
+  color: rgb(88 199 250 / 100%);
+  transition: color 1s;
+}
+.card:hover:before,
+.card:hover:after {
+  animation: none;
+  opacity: 0;
+}
+
+.card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate),
+    #5ddcff,
+    #3c67e3 43%,
+    #4e00c2
+  );
+  position: absolute;
+  z-index: -1;
+  top: -1%;
+  left: -2%;
+  animation: spin 2.5s linear infinite;
+}
+
+.card::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(
+    var(--rotate),
+    #5ddcff,
+    #3c67e3 43%,
+    #4e00c2
+  );
+  opacity: 1;
+  transition: opacity 0.5s;
+  animation: spin 2.5s linear infinite;
+}
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}

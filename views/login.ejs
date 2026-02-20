@@ -9,21 +9,84 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Single:wght@100..900&display=swap" rel="stylesheet">
     <link href="style/style.css" rel="stylesheet" />
     <title>Pagina de juegos</title>
   </head>
   <body>
+
+
     <div class="flex-container">
+      <% if (locals.error && locals.error === "1") { %>
       <div class="flex-box-head"><%- include("header.ejs") %></div>
+      <% } %>
+      <% if (locals.error && locals.error === "1") {%>
+        <div class="flex-container-pass-login">
+          <div id="juego-1" class="juego-1">cuerpo 1
+          </div>
+          <div class="juego-2">cuerpo 2</div>
+          <div class="juego-3">cuerpo 3</div>
+          <div class="juego-4">cuerpo 4</div>
+          <div class="juego-5">cuerpo 5</div>
+          <div class="juego-6">cuerpo 6</div>
+        </div>
+      <% } %>
+      <% if (locals.error != '1') { %>
       <div class="flex-box-body">
-        <h1>Esto es el body (Actualizado por ANONI y !2doAnoni Y HOLAaaaa)</h1>
+        <form class="form-login" action="/add" method="POST">
+          <% if(locals.registro === 1){ %>
+          <label class="title-login">Registrate</label>
+          <% } else {%>
+          <label class="title-login">Login</label>
+          <% } %>
+          <% if(locals.registro === 1){  %>
+          <label>Ingresar Usuario</label>
+          <% } else { %>
+          <label>Username</label>
+          <% } %>
+          <input type="text" name="user" />
+          <% if(locals.registro === 1){  %>
+          <label>Ingresar Contraseña</label>
+          <% } else { %>
+          <label>Contraseña</label>
+          <% } %>
+          <input type="password" name="pass" />
+          <% if(locals.registro === 1){ %>
+          <input class="boton-registro-primera" type="submit" value="Registrar Usuario" name="registrarsePrimeraVez" />
+          <input class="boton-cancelar" type="submit" value="Volver" name="cancelar" />
+          <% } else { %>
+          <input class="boton-ingresar" type="submit" value="Ingresar" name="ingreso" />
+          <input class="boton-registrarse" type="submit" value="Registrarse" name="registro" />
+          <% } %>
+          <!-- <button type="submit">Submit</button> -->
+          
+        </form>
+        <div>
+          <% if (locals.error && (locals.error === "0")) { %>
+          <h1 class="error"> <%= error === "0" ? "Usuario o contraseña incorrecta. Intente nuevamente" : ""  %></h1>
+          <% } %>
+          <% if (locals.registroPV && (locals.registroPV === 1 || locals.registroPV === 2)) { %>
+            <%=registroPV  %>
+          <h1 class="ingreso"> <%= registroPV === 1 ? "Usuario ingresado exitosamente" : "Usuario ya existe"  %></h1>
+          <% } %>
+        </div>
       </div>
+      <% } %>
+      <% if(locals.error && locals.error === "1"){ %>
       <div class="flex-box-footer"><%- include("footer.ejs") %></div>
+      <% } %>
     </div>
+    <% if(locals.error && locals.error === "1"){  %>
+    <script src="javascript/menuJuegos.js"></script>
+    <% } %>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
   </body>
+
+
 </html>

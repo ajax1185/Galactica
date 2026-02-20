@@ -9,8 +9,8 @@
 }
 
 .flex-box-body {
-  flex-basis: 450px;
-  max-height: 450px;
+  flex-basis: 850px;
+  max-height: 850px;
   padding: 10px;
   background-color: rgb(153, 6, 6);
 }
@@ -251,4 +251,130 @@
   100% {
     --rotate: 360deg;
   }
+}
+
+.flex-box-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../image/login.jpg");
+  /* background-color: rgba(255, 255, 255, 0.151);
+  background-blend-mode: lighten; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 25px;
+  color: white;
+  padding: 50px;
+  margin: 100px;
+  /* border: 1px solid white; */
+  /* background-color: #002c53; */
+}
+
+.title-login {
+  font-size: 60px;
+}
+
+.boton-ingresar {
+  background-color: rgba(0, 255, 128, 0.37);
+  color: white;
+  border-radius: 50px;
+}
+
+.boton-registrarse {
+  background-color: #3c66e360;
+  color: white;
+  border-radius: 50px;
+}
+
+.boton-registro-primera {
+  background-color: rgba(0, 255, 128, 0.37);
+  color: white;
+  border-radius: 50px;
+}
+
+.boton-cancelar {
+  background-color: #3c66e360;
+  color: white;
+  border-radius: 50px;
+}
+
+.error {
+  display: block;
+  font-size: 20px;
+  color: white;
+  background-color: red;
+  height: 60px;
+  border: 1px solid white;
+  padding: 20px;
+}
+
+.ingreso {
+  display: block;
+  font-size: 20px;
+  color: white;
+  background-color: rgb(21, 255, 0);
+  height: 60px;
+  border: 1px solid white;
+  padding: 20px;
+}
+
+.flex-container-pass-login {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  gap: 10%;
+}
+
+.juego-1 {
+  border: 1px solid black;
+  width: 25%;
+  margin: 10px;
+  background-image: url("../image/batalla.jpg");
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.juego-1-move {
+  position: absolute;
+  left: 37%;
+  top: 30%;
+  height: 305px;
+}
+
+.juego-2 {
+  border: 1px solid black;
+  width: 25%;
+  margin: 10px;
+}
+.juego-3 {
+  border: 1px solid black;
+  width: 25%;
+  margin: 10px;
+}
+.juego-4 {
+  border: 1px solid black;
+  width: 25%;
+  margin: 10px;
+}
+.juego-5 {
+  border: 1px solid black;
+  width: 25%;
+  margin: 10px;
+}
+.juego-6 {
+  border: 1px solid black;
+  width: 25%;
+  margin: 10px;
 }

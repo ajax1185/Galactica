@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const audio = new Audio("mp3/mortal.mp3");
-  audio.play();
+  // audio.play();
   const myDiv = document.getElementById("juego-1");
   const style = document.createElement("style");
 

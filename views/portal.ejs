@@ -22,26 +22,7 @@
     <!-- <button id="click">Click Me</button> -->
     <div class="flex-container">
       <div class="flex-box-head"><%- include("header.ejs") %></div>
-      <div class="flex-box-body">
-        <form class="form-login" action="/add" method="POST">
-          <label class="title-login">Login</label>
-          <label>Username</label>
-          <input type="text" name="username" />
-          <label>Contraseña</label>
-          <input type="password" name="password" />
-          <input
-            class="boton-ingresar"
-            type="submit"
-            value="Ingresar"
-            name="ingreso"
-          />
-        </form>
-        <% if (locals.error) {%>
-        <div>
-          <h1 class="error"><%= error %></h1>
-        </div>
-        <% } %>
-      </div>
+      <h1>Portal</h1>
       <div class="flex-box-footer"><%- include("footer.ejs") %></div>
     </div>
     <!-- <script src="javascript/menuJuegos.js"></script> -->

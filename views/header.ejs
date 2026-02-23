@@ -14,14 +14,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <% if (locals.error && locals.error != '1') { %>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/Inicio"
             >Inicio (main)</a
           >
         </li>
-        <% } %>
-        <% if (locals.error && locals.error === '1') { %>
         <li class="nav-item">
           <a class="nav-link" href="#">Git Project</a>
         </li>
@@ -65,7 +62,6 @@
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Nivel Experto</a>
         </li>
-        <% } %>
       </ul>
     </div>
   </div>

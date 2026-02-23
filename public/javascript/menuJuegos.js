@@ -4,10 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const myDiv = document.getElementById("juego-1");
   const style = document.createElement("style");
 
+  const elemento = document.getElementById("click");
+
+  elemento.addEventListener("click", cambiarFondo);
+
   const mouseOver = (event) => {
     // myDiv.style.opacity = 0.5;
     myDiv.classList.add("juego-1-move");
-    myDiv.createElement;
   };
 
   const mouseOut = (event) => {
@@ -18,3 +21,10 @@ document.addEventListener("DOMContentLoaded", function () {
   myDiv.addEventListener("mouseover", mouseOver);
   myDiv.addEventListener("click", mouseOut);
 });
+
+function cambiarFondo() {
+  const body = document.getElementsByTagName("body")[0];
+  console.log(body);
+
+  body.classList.toggle("blackk");
+}

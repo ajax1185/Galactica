@@ -3,14 +3,31 @@ import axios from "axios";
 import { config } from "node:process";
 import bodyParser from "body-parser";
 import pg from "pg";
+import bcrypt from "bcrypt";
+import passport from "passport";
+import { Strategy } from "passport-local";
+import session from "express-session";
 
 const app = express();
 const port = 3000;
 const API_URL = "https://v2.jokeapi.dev/joke/";
 const API_URL_COCKTAIL = "www.thecocktaildb.com/api/json/v1/1/";
+const saltRounds = 10;
+let resultado = false;
+let arreglo = [];
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extends: true }));
+app.use(
+  session({
+    secret: "TOPSECRETWORD",
+    resave: false,
+    saveUninitialized: true,
+  }),
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 const db = new pg.Client({
   user: "postgres",
@@ -23,9 +40,15 @@ const db = new pg.Client({
 db.connect();
 
 let mensaje = "";
+let resultadoMensajeArray = [];
+let informacion = [];
 
 app.get("/Batalla", (req, res) => {
-  res.render("batalla.ejs");
+  if (req.isAuthenticated()) {
+    res.render("batalla.ejs");
+  } else {
+    res.redirect("/");
+  }
 });
 
 app.get("/JokerAPI", async (req, res) => {
@@ -89,31 +112,41 @@ app.post("/add", async (req, res) => {
   }
 
   if (ingreso != null) {
-    mensaje = (await consultas("usuario", req, res)) === "1" ? "1" : "0";
-    res.render("login.ejs", {
-      error: mensaje,
-    });
+    const querySelect =
+      "SELECT id, username, password FROM USUARIOS WHERE USERNAME = $1";
+    const user = req.body.user;
+    const pass = req.body.pass;
+    const queryResult = await db.query(querySelect, [user]);
+
+    if (queryResult.rows.length > 0) {
+      bcrypt.compare(pass, queryResult.rows[0].password, (err, result) => {
+        if (err) {
+          console.log("Error al comparar las contraseñas");
+        } else {
+          if (result) {
+            res.render("login.ejs", { error: "1" });
+          } else {
+            console.log("Contraseña incorrecta");
+          }
+        }
+      });
+    } else {
+      res.send("No existe el usuario");
+    }
   }
 });
 
 async function consultas(tipo, req, res) {
   switch (tipo) {
-    case "usuario":
-      const querySelect =
-        "SELECT username, password FROM USUARIOS WHERE USERNAME = $1 AND PASSWORD = $2";
-      const user = req.body.user;
-      const pass = req.body.pass;
-      const queryResult = await db.query(querySelect, [user, pass]);
-      const queryRows = queryResult.rows.length > 0 ? "1" : "0";
-      return queryRows;
-      break;
     case "insertar":
       try {
         const queryInsert =
           "INSERT INTO USUARIOS (USERNAME, PASSWORD) VALUES ($1, $2)";
         const username = req.body.user;
         const password = req.body.pass;
-        await db.query(queryInsert, [username, password]);
+        bcrypt.hash(password, saltRounds, async (err, hash) => {
+          await db.query(queryInsert, [username, hash]);
+        });
         return 1;
       } catch (error) {
         console.error("El usuario ya existe en la bdd");
